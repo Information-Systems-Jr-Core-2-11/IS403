@@ -26,6 +26,8 @@ class Customer():
         self.zip = sZip
 
         self.balance = 0.0
+        self.updated_balance = 0.0
+        
         self.cust_pet = None
         self.cust_id = gen_id(first_name, last_name, address1)
 
@@ -39,12 +41,12 @@ class Customer():
 
 
     def return_bill(self):
-        return ("Customer " + str(self.cust_id) + " with name " + self.first_name + " " + self.last_name + " owes " + self.ibalance 
+        return ("Customer " + str(self.cust_id) + " with name " + self.first_name + " " + self.last_name + " owes " + self.updated_balance 
                + " for " + self.cust_pet + "'s stay from " + self.appointment.begin_date + " to " + self.appointment.end_date)
 
     #not really understand the requirment of this one
-    def make_payment(self)
-        self.ibalance = 0 - self.balance
+    def make_payment(self,iBalance)
+        self.updated_balance = self.balance - self.iBalance
 
       
 
