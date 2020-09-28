@@ -36,7 +36,7 @@ class Customer():
 
     # takes the first 3 letters from the first name, first 3 letters from the last name, 
     # and first 5 letters from the address to create the cust_id
-    def gen_id(self, fName, lName, sAdd1)：
+    def gen_id(self, fName, lName, sAdd1):
         self.cust_id = self.first_name[0:3] + self.last_name[0:3] + self.sAdd1[0:5]
 
 
@@ -45,13 +45,13 @@ class Customer():
                + " for " + self.cust_pet + "'s stay from " + self.appointment.begin_date + " to " + self.appointment.end_date)
 
     #not really understand the requirment of this one
-    def make_payment(self,iBalance)
+    def make_payment(self,iBalance):
         self.updated_balance = self.balance - self.iBalance
 
       
 
 class Pet():
-    self.appointment = 'Appointment'
+    appointment = 'Appointment'
     
     def __init__(self, name, breed, age, owner):
         self.pet_name = name
@@ -83,7 +83,7 @@ beginDate = input("Enter the begin date of " + name + "'s latest boarding")
 endDate = input("Enter the end date of " + name + "'s latest boarding")
 
 
-oCustomer = Customer()
+oCustomer = Customer() # need to pass parameters to object during creation
 print(oCustomer.return_bill())
 
 #Call the make_payment() method 
