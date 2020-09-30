@@ -117,39 +117,4 @@ for customerCount in range(0, numCustomers):
     print()
 
 
-
-# #gather the data for customer
-# fName = input('Enter the first name of this customer ')
-# lName = input('Enter the last name of this customer ')
-# sAdd1 = input('Enter the address of ' + fName + " ")
-# sCity = input('Enter the city of ' + fName+ " ")
-# sState = input('Enter the state of ' + fName + " ")
-# sZip = input('Enter the zip of ' + fName+ " ")
-
-# # FIXME: Create customer object here
-
-# #not sure whether we should let the the user enter the balance
-# iBalance = input('Enter how much money ' + fName + ' owes ') # FIXME: might need to calculate the balance based on the days stored
-
-# #gather the data for the pet
-# name = input("Enter the name of " + fName + "'s pet ")
-# breed = input("Enter the breed of " + name + " ")
-# age = input("Enter the age of " + name + " ")
-
-# # FIXME: push data to pet attribute of customer object
-
-# #gather the data for appointment
-
-# beginDate = datetime.strptime(input("Enter Start date in the format m/d/y: "), "%m/%d/%Y")
-# #beginDate = input("Enter the begin date of " + name + "'s latest boarding ")
-# endDate = datetime.strptime(input("Enter End date in the format m/d/y: "), "%m/%d/%Y")
-
-
-# oCustomer = Customer(fName, lName, sAdd1, sCity, sState, sZip) # need to pass parameters to object during creation
-# print(oCustomer.return_bill())
-
-# #Call the make_payment() method 
-# oCustomer.make_payment()
-# #print the current bill again calling the return_bill() method
-# print(oCustomer.return_bill())
     
