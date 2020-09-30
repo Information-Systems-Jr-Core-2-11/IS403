@@ -61,7 +61,7 @@ class Pet():
         self.owner = owner
 
 
-
+# FIXME: "Write a program that prompts the user to enter in the number of customers for your Pet Boarding company."
 
 #gather the data for customer
 fName = input('Enter the first name of this customer ')
