@@ -40,7 +40,7 @@ class Customer():
     # takes the first 3 letters from the first name, first 3 letters from the last name, 
     # and first 5 letters from the address to create the cust_id
     def gen_id(self):
-        newID = self.first_name[0:3] + self.last_name[0:3] + self.address1[0:5] # FIXME: might have to remove 1 from ranges, so it goes 0:2 and 0:4. Depends on if ranges are inclusive or exclusive
+        newID = self.first_name[0:3] + self.last_name[0:3] + self.address1[0:5] 
         return newID.replace(" ","")
 
 
