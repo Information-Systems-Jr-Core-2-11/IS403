@@ -33,7 +33,7 @@ class Customer():
 
         self.balance = 0.0
         
-        self.cust_pet = None
+        self.cust_pet = []
         self.cust_id = self.gen_id()
 
 
@@ -44,15 +44,15 @@ class Customer():
         return newID.replace(" ","")
 
 
-    def return_bill(self):
-        return (f"Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance:.2f} for {self.cust_pet.pet_name}'s stay from {self.cust_pet.appointment.begin_date.strftime('%x')} to {self.cust_pet.appointment.end_date.strftime('%x')}")
+    def return_bill(self, petCount, appointmentCount):
+        return (f"Customer {self.cust_id} with name {self.first_name} {self.last_name} owes ${self.balance:.2f} for {self.cust_pet[petCount].pet_name}'s stay from {self.cust_pet[petCount].appointment[appointmentCount].begin_date.strftime('%x')} to {self.cust_pet[petCount].appointment[appointmentCount].end_date.strftime('%x')}")
 
 
     def make_payment(self, payment):
         self.balance -= payment
 
     def add_pet(self, newPet):
-        self.cust_pet = newPet    
+        self.cust_pet.append(newPet)
 
       
 
@@ -63,7 +63,13 @@ class Pet():
         self.breed = breed
         self.age = age
         self.owner = owner
-        self.appointment = Appointment(owner)
+        self.appointment = []
+
+    def set_appointment(self, beginDate, endDate, dayRate):
+        self.appointment.append(Appointment(self.owner))
+        self.appointment[-1].set_appointment(beginDate, endDate, dayRate)
+        
+
 
 
 
@@ -88,38 +94,44 @@ for customerCount in range(0, numCustomers):
     print()
     aoCustomers.append(Customer(fName, lName, sAdd1, sAdd2, sCity, sState, sZip))
 
-    #gather pet info and create pet object
-    petName = input("Enter the name of " + fName + "'s pet ")
-    petBreed = input(f"Enter {petName}'s breed ")
-    petAge = input(f"Enter {petName}'s age ")
-    print()
-    currentPet = Pet(petName, petBreed, petAge, aoCustomers[customerCount])
+    numPets = int(input(f"How many pets does {fName} have? "))
 
-    # add pet object to customer object
-    aoCustomers[customerCount].add_pet(currentPet)
+    for petCount in range(0, numPets):
 
-    #Gather appointment info and set appointment (object) in Pet object
-    print()
-    beginDate = datetime.strptime(input("Enter Start date in the format m/d/y: "), "%m/%d/%Y")
-    endDate = datetime.strptime(input("Enter End date in the format m/d/y: "), "%m/%d/%Y")
-    dayRate = input("Enter the day rate, without a $ symbol. ")
-    while not dayRate.isnumeric(): # error check for number of customers
-        dayRate = input("Invalid input. Enter the day rate, without a $ symbol. ")
-    dayRate = float(dayRate)
-    aoCustomers[customerCount].cust_pet.appointment.set_appointment(beginDate, endDate, dayRate)
+        #gather pet info and create pet object
+        petName = input(f"Enter the name of {fName}'s pet #{petCount + 1} ") #FIXME: add pet number
+        petBreed = input(f"Enter {petName}'s breed ")
+        petAge = input(f"Enter {petName}'s age ")
+        print()
+        currentPet = Pet(petName, petBreed, petAge, aoCustomers[customerCount])
 
-    #Print the bill, make a payment, and print the bill again
-    print()
-    print(aoCustomers[customerCount].return_bill())
-    print()
-    custPayment = input("Enter the customer payment, without a $ symbol. ")
-    while not custPayment.isnumeric() or not float(custPayment) <= aoCustomers[customerCount].balance: # error check for number of customers
-        custPayment = input("Invalid input. Enter the customer payment, without a $ symbol, no greater than the total balance. ")
-    custPayment = float(custPayment)
-    aoCustomers[customerCount].make_payment(custPayment)
-    print()
-    print(aoCustomers[customerCount].return_bill()) 
-    print()
+        # add pet object to customer object
+        aoCustomers[customerCount].add_pet(currentPet)
+        
+        numAppointments = int(input(f'How many appointments for {petName}? '))
+        for appointmentCount in range(0, numAppointments):
+        #Gather appointment info and set appointment (object) in Pet object
+            print()
+            beginDate = datetime.strptime(input(f"Enter Start date for appointment {appointmentCount + 1} in the format mm/dd/yyyy: "), "%m/%d/%Y")
+            endDate = datetime.strptime(input(f"Enter End date for appointment {appointmentCount + 1} in the format mm/dd/yyyy: "), "%m/%d/%Y")
+            dayRate = input("Enter the day rate, without a $ symbol. ")
+            while not dayRate.isnumeric(): # error check for number of customers
+                dayRate = input("Invalid input. Enter the day rate, without a $ symbol. ")
+            dayRate = float(dayRate)
+            aoCustomers[customerCount].cust_pet[petCount].set_appointment(beginDate, endDate, dayRate)
+
+            #Print the bill, make a payment, and print the bill again
+            print()
+            print(aoCustomers[customerCount].return_bill(petCount, appointmentCount))
+            print()
+            custPayment = input("Enter the customer payment, without a $ symbol. ")
+            while not custPayment.isnumeric() or not float(custPayment) <= aoCustomers[customerCount].balance: # error check for number of customers
+                custPayment = input("Invalid input. Enter the customer payment, without a $ symbol, no greater than the total balance. ")
+            custPayment = float(custPayment)
+            aoCustomers[customerCount].make_payment(custPayment)
+            print()
+            print(aoCustomers[customerCount].return_bill(petCount, appointmentCount)) 
+            print()
 
 
     
