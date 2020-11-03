@@ -39,8 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'first_app.apps.FirstAppConfig',
+<<<<<<< HEAD
     'login.apps.LoginConfig',
     'signup.apps.SignupConfig',
+=======
+    'ViewPokedex.apps.ViewpokedexConfig'
+>>>>>>> 35d225c321908e6f8672486889f57102e922797c
 ]
 
 MIDDLEWARE = [
