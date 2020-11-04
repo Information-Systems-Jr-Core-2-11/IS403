@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import indexPageView
+from .views import crudTrainerPageView
 
 urlpatterns = [
-    path("", indexPageView, name="index")
+    path("crudTrainer/", crudTrainerPageView, name="crudTrainer"),
 ]
