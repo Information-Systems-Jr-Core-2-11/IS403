@@ -23,8 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ViewPokedex.urls')),
     path('', include('crudTrainer.urls')),
-    path('', include('createTrainer.urls')),
-    path('', include('readTrainer.urls')),
-    path('', include('updateTrainer.urls')),
-    path('', include('deleteTrainer.urls')),
 ]
