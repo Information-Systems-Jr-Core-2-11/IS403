@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('signup.urls')),
     path('admin/', admin.site.urls),
     path('', include('ViewPokedex.urls')),
+    path('', include('crudTrainer.urls')),
 ]
