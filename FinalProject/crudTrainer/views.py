@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttResponse
+from django.http import HttpResponse
 
 def crudTrainerPageView(request) :
     return HttpResponse('crudTrainer')
