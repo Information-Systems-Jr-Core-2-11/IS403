@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'signup.apps.SignupConfig',
     'ViewPokedex.apps.ViewpokedexConfig',
     'crudTrainer.apps.crudTrainerConfig',
+    'viewYourTrainers.apps.ViewyourtrainersConfig',
 ]
 
 MIDDLEWARE = [
