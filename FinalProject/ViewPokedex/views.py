@@ -8,4 +8,4 @@ def pokedexPageView(request):
         "movies" : ["Star wars", "Three Amigos", "Elf"]
     }
     # return render(request, './template/index.html')
-    return render(request, 'ViewPokedex/index.html')
+    return render(request, 'ViewPokedex/index.html', context)
