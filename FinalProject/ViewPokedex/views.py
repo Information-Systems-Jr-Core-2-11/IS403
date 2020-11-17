@@ -9,3 +9,11 @@ def pokedexPageView(request):
     }
     # return render(request, './template/index.html')
     return render(request, 'ViewPokedex/index.html', context)
+
+def pokemonPageView(request):
+    context = {
+        "name" : "jonah",
+        "movies" : ["Star wars", "Three Amigos", "Elf"]
+    }
+    # return render(request, './template/index.html')
+    return render(request, 'ViewPokedex/index.html', context)
