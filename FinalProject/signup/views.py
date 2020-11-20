@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 # Create your views here.
 def signupPageView(request):
-    return HttpResponse('sign up')
+    return render(request, 'Signup/signup.html')
 
 def signedupPageView(request):
     return HttpResponse('signed up')
