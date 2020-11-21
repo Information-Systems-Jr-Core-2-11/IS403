@@ -3,13 +3,9 @@
 {% block content %}
 
     <p>This page will contain a django form which will accept the trainer's name then delete them</p>
-    <p>It will also have buttons that links to pages where the user can do the following: </p>
-    <ul>
-    <li>create a trainer</li>
-    <li>update a trainer's information</li>
-    </ul>
+    <p>It will also have buttons that links to pages where the user can create a trainer or update a trainer's information</p>
     <button><a href="{% url 'createTrainer' %}">Create a Trainer</a></button>
     <button><a href="{% url 'updateTrainer' %}">Delete a Trainer</a></button>
     <p>Data will be linked to the Trainer postgres table.</p>
-    
+
 {% endblock %}

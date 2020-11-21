@@ -3,13 +3,7 @@
 {% block content %}
 
     <p>This page will list the user's trainers and the information that we store about them</p>
-    <p>It will have buttons to go to forms to do the following:</p>
-    <ul>
-    <li>create a trainer</li>
-    <li>delete a trainer that has been created</li>
-    <li>update a trainer's information</li>
-    </ul>
-
+    <p>It will have buttons to go to forms to create a trainer, delete a trainer that has been created, or update a trainer's information</p>
     <button><a href="{% url 'createTrainer' %}">Create a Trainer</a></button>
     <button><a href="{% url 'updateTrainer' %}">Delete a Trainer</a></button>
     <button><a href="{% url 'deleteTrainer' %}">Update a Trainer's Information</a></button>
