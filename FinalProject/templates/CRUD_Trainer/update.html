@@ -6,11 +6,10 @@
     <p>It will also have buttons that links to pages where the user can do the following: </p>
     <ul>
     <li>create a trainer</li>
-    <li>delete a trainer that has been created</li>
     <li>update a trainer's information</li>
     </ul>
     <button><a href="{% url 'create' %}">Create a Trainer</a></button>
-    <button><a href="{% url 'read' %}">Find a Trainer</a></button>
     <button><a href="{% url 'delete' %}">Update a Trainer's Information</a></button>
-
+    <p>Data will be linked to the Trainer postgres table.</p>
+    
 {% endblock %}

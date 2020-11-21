@@ -2,8 +2,16 @@
 {% load static %}
 {% block content %}
 
-    <p>This page will list a table of the national pokedex, all original 151 pokemon</p>
-    <p>It will be uneditable and won't contain any forms. It's just for reviewing what pokemon there are to choose from.</p>
-    <p>Data will be linked to the Pokemon postgres table.</p>
+    <p>This page will list the user's trainers and the information that we store about them</p>
+    <p>It will have buttons to go to forms to do the following:</p>
+    <ul>
+    <li>create a trainer</li>
+    <li>delete a trainer that has been created</li>
+    <li>update a trainer's information</li>
+    </ul>
+    <button><a href="{% url 'create' %}">Create a Trainer</a></button>
+    <button><a href="{% url 'update' %}">Delete a Trainer</a></button>
+    <button><a href="{% url 'delete' %}">Update a Trainer's Information</a></button>
+    <p>Data will be linked to the Trainer postgres table.</p>
 
 {% endblock %}

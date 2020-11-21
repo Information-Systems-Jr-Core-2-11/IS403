@@ -7,9 +7,6 @@ def crudTrainerPageView(request) :
 def createTrainerPageView(request) :
     return render(request, 'createTrainer/create.html')
 
-def readTrainerPageView(request) :
-    return render(request, 'readTrainer/read.html')
-
 def updateTrainerPageView(request) :
     return render(request, 'updateTrainer/update.html')
 
