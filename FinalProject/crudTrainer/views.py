@@ -5,13 +5,14 @@ def crudTrainerPageView(request) :
     return HttpResponse('crudTrainer')
 
 def createTrainerPageView(request) :
-    return HttpResponse('create trainer')
+    return render(request, 'createTrainer/create.html')
 
 def readTrainerPageView(request) :
-    return HttpResponse('read trainer')
+    return render(request, 'readTrainer/read.html')
 
 def updateTrainerPageView(request) :
-    return HttpResponse('update trainer')
+    return render(request, 'updateTrainer/update.html')
 
 def deleteTrainerPageView(request) :
-    return HttpResponse('delete trainer')
+    return render(request, 'deleteTrainer/delete.html')
+
