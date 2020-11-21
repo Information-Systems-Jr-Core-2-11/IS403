@@ -9,9 +9,10 @@
     <li>delete a trainer that has been created</li>
     <li>update a trainer's information</li>
     </ul>
-    <button><a href="{% url 'create' %}">Create a Trainer</a></button>
-    <button><a href="{% url 'update' %}">Delete a Trainer</a></button>
-    <button><a href="{% url 'delete' %}">Update a Trainer's Information</a></button>
+
+    <button><a href="{% url 'createTrainer' %}">Create a Trainer</a></button>
+    <button><a href="{% url 'updateTrainer' %}">Delete a Trainer</a></button>
+    <button><a href="{% url 'deleteTrainer' %}">Update a Trainer's Information</a></button>
     <p>Data will be linked to the Trainer postgres table.</p>
 
 {% endblock %}
