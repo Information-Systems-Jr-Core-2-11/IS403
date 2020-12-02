@@ -18,6 +18,10 @@ class Pokemon(models.Model):
     def types(self):
         return (self.type1 + ' ' + self.type2)
 
+    @property
+    def get_photo_url(self):
+        return 'img/' + str(self.id) + '.png'
+
 class Trainer(models.Model):
     first_name = models.CharField(max_length = 50)
     last_name = models.CharField(max_length = 50)
@@ -28,3 +32,7 @@ class Trainer(models.Model):
 
     def __str__(self):
         return (self.first_name + ' ' + self.last_name)        
+
+    @property
+    def full_name(self):
+        return self.first_name + ' ' + self.last_name

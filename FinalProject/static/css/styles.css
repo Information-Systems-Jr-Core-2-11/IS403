@@ -7,7 +7,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #2872B8;
+    background-color: #333;
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
@@ -26,5 +26,6 @@ li a {
 }
 
 li a:hover {
-    background-color: #FFCC01;
+    background-color: #111;
 }
+

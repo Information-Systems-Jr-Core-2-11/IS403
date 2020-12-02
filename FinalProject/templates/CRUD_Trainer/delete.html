@@ -1,11 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <p>This page will contain a django form which will accept the trainer's name then delete them</p>
-    <p>It will also have buttons that links to pages where the user can create a trainer or update a trainer's information</p>
-    <button><a href="{% url 'createTrainer' %}">Create a Trainer</a></button>
-    <button><a href="{% url 'updateTrainer' %}">Delete a Trainer</a></button>
-    <p>Data will be linked to the Trainer postgres table.</p>
+    
+    <div class="lightboxdiv">
+        <table style="width:100%">
+            <tr>
+                <th>Trainer ID</th>
+                <th>Name</th>
+                <th>Home Town</th>
+                <th>Gender</th>
+                <th>Favorite Type</th>
+            </tr>
+            {% for trainer in Trainers %}
+            <tr>
+                <td>{{trainer.id}}</td>
+                <td>{{trainer.full_name}}</td>
+                <td>{{trainer.home_town}}</td>
+                <td>{{trainer.gender}}</td>
+                <td>{{trainer.fav_type}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form action="{% url 'deleteTrainer' %}" method="post">
+            {% csrf_token %}
+            <b>Delete a Trainer</b> <br>
+            <label for="customer_name">Enter the Trainer ID of the Trainer to delete:</label>
+            <input id="trainer_id_delete" type="text" name="trainer_id_delete"> <br>
+            <input type="submit" value="Submit"> <br>
+        </form>
+        <button><a href="{% url 'viewTrainer' %}">Back</a></button>
+    </div>
 
 {% endblock %}

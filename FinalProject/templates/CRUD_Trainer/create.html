@@ -1,11 +1,57 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <p>This page will contain a django form which will accept the trainer's information</p>
-    <p>It will also have buttons that links to pages where the user can delete a trainer that has been created or update a trainer's information</p>
-    <button><a href="{% url 'updateTrainer' %}">Delete a Trainer</a></button>
-    <button><a href="{% url 'deleteTrainer' %}">Update a Trainer's Information</a></button>
-    <p>Data will be linked to the Trainer postgres table.</p>
+    <div class="lightboxdiv">
+    <form action="{% url 'viewTrainer' %}" method="post">
+        {% csrf_token %}
+        <b>Enter a New Trainer</b> <br>
+        <label for="trainer_first_name">What is the new trainer's first name:</label>
+        <input id="trainer_first_name" type="text" name="trainer_first_name"> <br>
+        <label for="trainer_last_name">What is the new trainer's last name:</label>
+        <input id="trainer_last_name" type="text" name="trainer_last_name"> <br>
+        <label for="hometown">What is the new trainer's home town:</label>
+        <select name="hometown">
+            <option value="Pallet Town">Pallet Town</option>
+            <option value="Viridian City">Viridian City</option>
+            <option value="Pewter City">Pewter City</option>
+            <option value="Cerulean City">Cerulean City</option>
+            <option value="Vermillion City">Vermillion City</option>
+            <option value="Lavender Town">Lavender Town</option>
+            <option value="Celadon City">Celadon City</option>
+            <option value="Fuchsia City">Fuchsia City</option>
+            <option value="Saffron City">Saffron City</option>
+            <option value="Cinnabar Island">Cinnabar Island</option>
+        </select> <br>
+        <label for="gender">What is the new trainer's gender:</label>
+        <select name="gender">
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+            <option value="O">Other</option>
+        </select> <br>
+        <label for="favtype">What is the new trainer's favorite type:</label>
+        <select name="favtype">
+            <option value="Normal">Normal</option>
+            <option value="Fire">Fire</option>
+            <option value="Fighting">Fighting</option>
+            <option value="Water">Water</option>
+            <option value="Flying">Flying</option>
+            <option value="Grass">Grass</option>
+            <option value="Poison">Poison</option>
+            <option value="Electric">Electric</option>
+            <option value="Ground">Ground</option>
+            <option value="Psychic">Psychic</option>
+            <option value="Rock">Rock</option>
+            <option value="Ice">Ice</option>
+            <option value="Bug">Bug</option>
+            <option value="Dragon">Dragon</option>
+            <option value="Ghost">Ghost</option>
+            <option value="Dark">Dark</option>
+            <option value="Steel">Steel</option>
+        </select> <br>
+        <input type="submit" value="Submit"> <br>
+    </form>  
+    
+    <button><a href="{% url 'viewTrainer' %}">Back</a></button>
+    </div>
 
 {% endblock %}

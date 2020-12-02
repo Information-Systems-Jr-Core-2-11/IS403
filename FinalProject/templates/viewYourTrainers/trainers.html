@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-
-    <p>This page will list the user's trainers and the information that we store about them</p>
-    <p>It will have buttons to go to forms to create a trainer, delete a trainer that has been created, or update a trainer's information</p>
+    <div class="lightboxdiv">
+    <table style="width:100%">
+        <tr>
+            <th>Trainer ID</th>
+            <th>Name</th>
+            <th>Home Town</th>
+            <th>Gender</th>
+            <th>Favorite Type</th>
+        </tr>
+        {% for trainer in Trainers %}
+        <tr>
+            <td>{{trainer.id}}</td>
+            <td>{{trainer.full_name}}</td>
+            <td>{{trainer.home_town}}</td>
+            <td>{{trainer.gender}}</td>
+            <td>{{trainer.fav_type}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
     <button><a href="{% url 'createTrainer' %}">Create a Trainer</a></button>
-    <button><a href="{% url 'updateTrainer' %}">Delete a Trainer</a></button>
-    <button><a href="{% url 'deleteTrainer' %}">Update a Trainer's Information</a></button>
-    <p>Data will be linked to the Trainer postgres table.</p>
+    <button><a href="{% url 'updateTrainer' %}">Update a Trainer's Information</a></button>
+    <button><a href="{% url 'deleteTrainer' %}">Delete a Trainer</a></button>
+    <br><br>
+    </div>
 
 {% endblock %}

@@ -22,3 +22,4 @@ from django.db import models
 #     def types(self):
 #         return (self.type1 + ' ' + self.type2)
 
+from crudTrainer.models import Pokemon, Trainer
