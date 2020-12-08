@@ -1,5 +1,34 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <p>findapplicants- allows an employer to search applicants based on the skills they have</p>
+
+<h2>Find An Applicant</h2>
+<form action="{% url 'applicantlistings' %}" method="post">
+    {% csrf_token %}
+    <div class="row d-flex justify-content-center mt-100">
+        <div class="col-md-6"> 
+            <select id="choices-multiple-remove-button" name="choices-multiple-remove-button" placeholder="Select all applicable skills" multiple>
+                {% for skill in Skills %}
+                <option value="{{skill.skill_name}}">{{skill.skill_name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" class="submit-button" value="Submit">
+        </div>
+    </div>
+</form>
+<script>
+     $(document).ready(function(){
+
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+    removeItemButton: true,
+    maxItemCount:100,
+    searchResultLimit:20,
+    renderChoiceLimit:20,
+    });
+});
+</script>
 {% endblock %}
+
+
+
+

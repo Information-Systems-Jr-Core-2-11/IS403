@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block banner %}
+    <div class="homepage-banner">
+        <div class="homepage-banner-inner">
+            <h1>Skill Recommender</h1>
+            <div class="homepage-banner-inner-subtext">
+                <p>Enter your strongest or most prominent skill below. We'll use information about real people who have received real job offers to recommend which additional skills will most help you land your next job.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
 {% block content %}
-    <p>skill recommender</p>
+    <div style="width:40%;margin:auto;padding-top:20px;padding-bottom:20px;">
+        <form action="{% url 'skillrecommenderresponse' %}" method="post">
+            {% csrf_token %}
+            <input type="text" id="skill" name="skill" placeholder="Enter your skill here">
+            <input type="submit" class="submit-button" value="Submit" style="width:30%;">
+        </form>
+    </div>
 {% endblock %}

@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <p>signup main page- will probably need to split this in to employer and applicant signup</p>
+
+<div class="row">
+  <div class="column">
+  <h1>Applicants</h1>
+  <hr>
+    <form>
+        <button style="height:40px;width:200px" type="button" href="{% url 'signupapplicant' %}">Sign up as applicant</button> 
+    </form>
+  </div>
+
+  <div class="column">
+  <h1>Employers</h1>
+  <hr>
+    <form>
+        <button style="height:40px;width:200px" type="button" href="{% url 'signupemployer' %}">Sign up as employer</button>
+    </form>
+</div>
+</div>
 {% endblock %}

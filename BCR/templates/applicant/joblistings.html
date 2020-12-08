@@ -1,5 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'tablebase.html' %}
 {% load static %}
 {% block content %}
-    <p>joblistings- show applicant jobs based on their skills</p>
+    <h2 style="text-align:center;">Your Personalized Job Results</h2>
+    <p style="text-align:center;">Congratulations! On average, active BCR users with your similar skill set receive {{numJobs}} job offer{% if numJobs > 1 %}s{% endif %}.</p>
+    <table class="table-centered">
+        <tr>
+            <th># of Matching Skills</th>
+            <th>Job Title</th>
+            <th>Company Name</th>
+            <th>Job Location</th>
+            <th>Job Video</th>
+            <th>View Listing</th>
+        </tr>
+        {% for job in matchingJobs %}
+        <tr>
+            <td>{{job.0}}</td>
+            <td>{{job.2}}</td>
+            <td>{{job.3}}</td>
+            <td>{{job.4}}</td>
+            <td><a class="btn btn-light" href="#">Video</a></td>
+            <td><a class="btn btn-light" href="#">View Listing</a></td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
+
+
+
+

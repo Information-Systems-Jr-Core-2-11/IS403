@@ -1,5 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'employerbase.html' %}
 {% load static %}
 {% block content %}
-    <p>form for an employer to post a new job</p>
+<div class="jobPosting">
+    <h1>Create a Job Posting</h1>
+    <form action="{% url 'postjob' %}" method="post">
+            <label for="job_title">Job Title: </label>
+            <input type="text" id="job_title" name="job_title" autofocus>
+            <label for="salary">Job Salary: </label>
+            <input type="text" id="salary" name="salary">
+            <label for="appStart">Application Start Date: </label>
+            <input type="date" name="appStart" id="appStart">
+            <label for="appEnd">Application End Date: </label>
+            <input type="date" name="appEnd" id="appEnd">
+            <label for="jobStart">Job Start Date: </label>
+            <input type="date" name="jobStart" id="jobStart">
+            <label for="jobLoc">Job Location: </label>
+            <input type="text" name="jobLoc" id="jobLoc">
+            <label for="jobDesc">Job Description: </label>
+            <input type="text" name="jobDesc" id="jobDesc" rows="10" style="height: 100px;">
+            <label for="jobReq">Job Requirements: </label>
+            <input type="text" name="jobReq" id="jobReq">
+            <label for="relocPac">Relocation Package: </label>
+            <input type="text" name="relocPac" id="relocPac">
+            <label for="jobBen">Job Benefits: </label>
+            <input type="text" name="jobBen" id="jobBen">
+            <input type="submit" name="submit" id="submit">
+    </form>
+</div>
 {% endblock %}

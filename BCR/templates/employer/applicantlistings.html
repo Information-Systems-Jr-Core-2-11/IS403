@@ -1,0 +1,27 @@
+{% extends 'tablebase.html' %}
+{% load static %}
+{% block content %}
+    <h2 style="text-align:center;">Your Personalized Applicant Results</h2>
+    <table class="table-centered">
+        <tr>
+            <th># of Matching Skills</th>
+            <th>Applicant Name</th>
+            <th>Applicant Location</th>
+            <th>Applicant Video</th>
+            <th>View Listing</th>
+        </tr>
+        {% for job in matchingJobs %}
+        <tr>
+            <td>{{applicant.0}}</td>
+            <td>{{applicant.2}}</td>
+            <td>{{applicant.3}}</td>
+            <td>{{applicant.4}}</td>
+            <td><a class="btn btn-light" href="#">Video</a></td>
+            <td><a class="btn btn-light" href="#">View Listing</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+
+

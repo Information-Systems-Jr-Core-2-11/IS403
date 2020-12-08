@@ -14,5 +14,34 @@
 
 {% endblock %}
 {% block content %}
-<p>Here is some content for our home index page!</p>
+  <h1>Employers</h1>
+  <hr>
+  <form>
+        <a class="btn btn-secondary" href="{% url 'employer' %}">Go to Employer Portal</a>
+    </form>
+    <br/>
+  <h1>Applicants</h1>
+  <hr>
+  <form>
+        <a class="btn btn-secondary" href="{% url 'joblistings' %}">Browse jobs that fit your skill set</a>
+        <a class="btn btn-secondary" href="{% url 'skillrecommender' %}">See which skills get jobs</a>
+        <a class="btn btn-secondary" href="{% url 'offers' %}">Review and respond to job offers</a>
+        <a class="btn btn-secondary" href="{% url 'signupapplicant' %}">Create an account</a> 
+        <a class="btn btn-secondary" href="{% url 'homepage' %}">Edit or delete your profile</a>
+        <a class="btn btn-secondary" href="{% url 'login' %}">Login</a>
+    </form>
+    <br><br>
+
+{% endblock %}<h5>ve not gotton an account? Sign up now!</h5>
+        <a class="btn btn-secondary" href="{% url 'signupapplicant' %}">Create An Account</a> 
+        <br>
+        <h5>Already have an account? Login in now!</h5>
+        <a class="btn btn-secondary" href="{% url 'login' %}">Login</a>
+        <br>
+        <h5>Edit or delete your profile</h5>
+        <a class="btn btn-secondary" href="{% url 'homepage' %}">Your Profile</a>
+
 {% endblock %}
+
+
+

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block banner %}
+    <div class="homepage-banner">
+        <div class="homepage-banner-inner">
+            <h1>Your Recommended Skills</h1>
+            <div class="homepage-banner-inner-subtext">
+                <p>Here are some skills to acquire that will help you land your next job offer.
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+{% block content %}
+    {% for skill in SkillsReturned %}
+        <p>{{skill}}</p>
+    {% endfor %}
+{% endblock %}
