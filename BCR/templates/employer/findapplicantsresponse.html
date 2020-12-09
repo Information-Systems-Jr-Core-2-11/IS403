@@ -1,0 +1,28 @@
+{% extends 'employertablebase.html' %}
+{% load static %}
+{%block banner%}
+<img src="{% static 'img/backgrounds/background_5.jpg' %}" width="100%" height ="100%"/>
+{% endblock %}
+{% block content %}
+    <h2 style="text-align:center;">Your Personalized Candidate Results</h2>
+    <table class="table-centered">
+        <tr>
+            <th># of Matching Skills</th>
+            <th>Candidate Name</th>
+            <th>Candidate Location</th>
+            <th>Candidate Video</th>
+            <th>Candidate Resume</th>
+            <th>View Profile</th>
+        </tr>
+        {% for candidate in matchingUsers %}
+        <tr>
+            <td>{{candidate.0}}</td>
+            <td>{{candidate.2}} {{candidate.3}}</td>
+            <td>{{candidate.4}}, {{candidate.5}}</td>
+            <td><a class="btn btn-secondary" href="#">Video</a></td>
+            <td><a class="btn btn-secondary" href="#">Resume</a></td>
+            <td><a class="btn btn-secondary" href="{% url 'applicantprofile' %}">View Profile</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

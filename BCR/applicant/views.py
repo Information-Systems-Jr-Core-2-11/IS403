@@ -92,7 +92,8 @@ def companyProfilePageView(request):
     return render(request, 'applicant/companyprofile.html')
 
 def skillRecommenderPageView(request):
-    return render(request, 'applicant/skillrecommender.html')
+    context = {'Skills': Skill.objects.all()}
+    return render(request, 'applicant/skillrecommender.html',context)
 
 def offersPageView(request):
     return render(request, 'applicant/offers.html')
@@ -100,7 +101,7 @@ def offersPageView(request):
 def skillRecommenderResponsePageView(request):
 
     if request.method == 'POST':
-        skill = request.POST['skill']
+        skill = request.POST['choices-multiple-remove-button']
         SkillsReturned = SkillRecommender(skill)
         context = {'SkillsReturned' : SkillsReturned}
         return render(request, 'applicant/skillrecommenderresponse.html', context)
@@ -150,13 +151,13 @@ def MatchingJobsSQL(skill_names, num_records = 10):
     skills_sql_format = skills_sql_format[:-1]
     skills_sql_format = skills_sql_format[:-1]
     skills_sql_format = skills_sql_format[:-1]
-    query = f"""SELECT COUNT(hjs."skill_name") AS Matching_Skills, hjs."job_id", hj."job_title", ho."company_name", hj."job_location", '' AS video_button FROM homepage_job_skill hjs
-                INNER JOIN homepage_job hj ON hj."job_id" = hjs."job_id"
-                LEFT OUTER JOIN homepage_organization ho ON ho."organization_id" = hj."organization_id"
-                WHERE hjs."skill_name" IN ({skills_sql_format}) AND hj."Job_filled" != True
-                GROUP BY hjs."job_id", hj."job_title", ho."company_name", hj."job_location"
-                HAVING COUNT(hjs."skill_name") > 0
-                ORDER BY COUNT(hjs."skill_name") DESC
+    query = f"""SELECT COUNT(hjs."skill_name_id") AS Matching_Skills, hjs."job_id_id", hj."job_title", ho."company_name", hj."job_location", '' AS video_button FROM homepage_job_skill hjs
+                INNER JOIN homepage_job hj ON hj."job_id" = hjs."job_id_id"
+                LEFT OUTER JOIN homepage_organization ho ON ho."organization_id" = hj."organization_id_id"
+                WHERE hjs."skill_name_id" IN ({skills_sql_format}) AND hj."Job_filled" != True
+                GROUP BY hjs."job_id_id", hj."job_title", ho."company_name", hj."job_location"
+                HAVING COUNT(hjs."skill_name_id") > 0
+                ORDER BY COUNT(hjs."skill_name_id") DESC
                 LIMIT {num_records}"""
     return query
 

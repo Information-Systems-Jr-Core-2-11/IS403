@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Black Cyber Recruiti</title>
+    <title>Black Cyber Recruiting</title>
     <link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
     <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -15,25 +15,29 @@
     <link rel="shortcut icon" type="image/png" href="{% static 'bcr.png' %}"/>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'homepage' %}" style="color:red;font-weight: bold; font-size: xx-large;">BCR</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{% url 'findajob' %}">Find a Job <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="{% url 'skillrecommender' %}">Skill Recommender</a>
-            <a class="nav-item nav-link" href="{% url 'ourmission' %}">Our Mission</a>
-            <a class="nav-item nav-link" href="{% url 'postjob' %}">Employer Portal</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{% url 'homepage' %}" 
+      {% if request.path == '/' %} style="color:white; background-color: red;font-weight: bold; font-size: xx-large; padding-left:5px;padding-right:5px;" 
+      {% else %} style="color:red;font-weight: bold; font-size: xx-large;padding-left:5px;padding-right:5px;" 
+      {% endif %}>BCR
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link {% if request.path == '/applicant/findajob/' or request.path == '/applicant/joblistings/' %}active{% endif %}" href="{% url 'findajob' %}">Find a Job <span class="sr-only">(current)</span></a>
+        <a class="nav-item nav-link {% if request.path == '/applicant/skillrecommender/' %}active{% endif %}" href="{% url 'skillrecommender' %}">Skill Recommender</a>
+        <a class="nav-item nav-link {% if request.path == '/ourmission/' %}active{% endif %}" href="{% url 'ourmission' %}">Our Mission</a>
+        <a class="nav-item nav-link {% if request.path == '/applicant/findajob' %}active{% endif %}" href="{% url 'employer' %}">Employer Portal</a>
 
-          </div>
-          <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link" href="{% url 'signupmain' %}">Signup</a>
-              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-          </div>
-        </div>
-    </nav>
+      </div>
+      <div class="navbar-nav ml-auto">
+          <a class="nav-item nav-link" href="{% url 'signupmain' %}">Signup</a>
+          <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+      </div>
+    </div>
+</nav>
     {% block banner %}
     {% endblock %}
     <div class="content-holder">
@@ -42,7 +46,6 @@
         {% endblock %}
       </div>
     </div>
-
     <footer class="page-footer font-small blue fixed-bottom " style="background-color: white;">
 
       <!-- Copyright -->

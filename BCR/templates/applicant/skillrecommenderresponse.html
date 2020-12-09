@@ -1,18 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block banner %}
-    <div class="homepage-banner">
-        <div class="homepage-banner-inner">
-            <h1>Your Recommended Skills</h1>
-            <div class="homepage-banner-inner-subtext">
-                <p>Here are some skills to acquire that will help you land your next job offer.
-                </p>
-            </div>
-        </div>
-    </div>
+<img src="{% static 'img/backgrounds/background_1.jpg' %}" width="100%" height ="100%"/>
     {% endblock %}
 {% block content %}
+    <h1 style="text-align:center;">Your Recommended Skills</h1>
+    <p style="text-align:center;">Here are some skills to acquire that will help you land your next job.
+    </p>
+    <hr>
     {% for skill in SkillsReturned %}
-        <p>{{skill}}</p>
+        <h3 style="text-align:center;">{{skill |capfirst}}</h3>
     {% endfor %}
 {% endblock %}

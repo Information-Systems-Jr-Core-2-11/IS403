@@ -17,38 +17,46 @@
             width:60%;
             display:inline-block;
         }
+        .deactivate {
+            text-align:left;
+            display:inline-block;
+            width:auto;
+            margin-right:59.2%
+        }
+
     </style>
     <div style="margin:auto;text-align:center;">
-    <h1 style="text-align:center;">Create a Job Posting</h1>
-    <form action="{% url 'jobposted' %}" method="post">
+    <h1 style="text-align:center;">Enter your updated job information</h1>
+    <form action="{% url 'editjobsuccess' %}" method="post">
         {% csrf_token %}
+        <input type="text" value="{{jobIDToEdit}}" name="job_id" id="job_id" hidden>
         <div class="block">
             <label for="job_title">Job Title </label>
-                <input type="text" id="job_title" name="job_title" placeholder="Job Title | Max Length: 200 chars" autofocus>
+                <input type="text" id="job_title" name="job_title" value="{{jobToEdit.job_title}}" placeholder="Job Title | Max Length: 200 chars" autofocus>
         </div>
         <div class="block">
             <label for="salary">Job Salary </label>
-                <input type="text" id="salary" name="salary" placeholder="Job Salary | Annual">
+                <input type="text" id="salary" name="salary" value="{{jobToEdit.salary}}" placeholder="Job Salary | Annual">
         </div>
         <div class="block">
             <label for="appStart">Application Start Date </label>
-                <input type="date" name="appStart" id="appStart" placeholder="Application Start Date">
+                <input type="date" name="appStart" id="appStart" value="{{jobToEdit.apply_startDate}}" placeholder="Application Start Date">
         </div>
         <div class="block">
             <label for="appEnd">Application End Date </label>
-                <input type="date" name="appEnd" id="appEnd" placeholder="Application End Date">
+                <input type="date" name="appEnd" id="appEnd" value="{{jobToEdit.apply_endDate}}" placeholder="Application End Date">
         </div>
         <div class="block">
             <label for="jobStart">Job Start Date </label>
-                <input type="date" name="jobStart" id="jobStart" placeholder="Job Start Date">
+                <input type="date" name="jobStart" id="jobStart" value="{{jobToEdit.job_startDate}}" placeholder="Job Start Date">
         </div>
         <div class="block">
             <label for="jobLoc">Job Location </label>
-                <input type="text" name="jobLoc" id="jobLoc" placeholder="Job Location">
+                <input type="text" name="jobLoc" id="jobLoc" value="{{jobToEdit.job_location}}" placeholder="Job Location">
         </div>
         <div class="block">
             <label for="jobDesc">Job Description </label>
-                <input type="text" name="jobDesc" id="jobDesc"  placeholder="Job Description | Max Length: 8000 chars" rows="10" style="height: 100px;">
+                <input type="text" name="jobDesc" id="jobDesc" value="{{jobToEdit.job_description}}" placeholder="Job Description | Max Length: 8000 chars" rows="10" style="height: 100px;">
         </div>
         <div class="block">
             <label for="requiredSkills">Required Skills</label>
@@ -68,15 +76,19 @@
         </div>
         <div class="block">
             <label for="jobReq">Job Requirements </label>
-                <input type="text" name="jobReq" id="jobReq" placeholder="Job Requirements | Please describe any special requirements or qualifications for the job">
+                <input type="text" name="jobReq" id="jobReq" value="{{jobToEdit.job_requirements}}" placeholder="Job Requirements | Please describe any special requirements or qualifications for the job">
         </div>
         <div class="block">
             <label for="relocPac">Relocation Package </label>
-                <input type="text" name="relocPac" id="relocPac" placeholder="Relocation Package | Please describe any assistance provided for relocation">
+                <input type="text" name="relocPac" id="relocPac" value="{{jobToEdit.relocation_package}}" placeholder="Relocation Package | Please describe any assistance provided for relocation">
         </div>
         <div class="block">
             <label for="jobBen">Job Benefits </label>
-                <input type="text" name="jobBen" id="jobBen" placeholder="Job Benefits | Please describe any benefits associated with the job">
+                <input type="text" name="jobBen" id="jobBen" value="{{jobToEdit.job_benefits}}" placeholder="Job Benefits | Please describe any benefits associated with the job">
+        </div>
+        <div class="block">
+            <label for="deactivate">Deactivate job? </label>
+                <input type="checkbox" name="deactivate" class="deactivate" id="deactivate" value="True" {% if jobToEdit.Job_filled == True %} checked {% endif %}>
             <br><br>
             <input type="submit" name="submit" id="submit" class="submit-button" style="width: 110px;">
         </div>

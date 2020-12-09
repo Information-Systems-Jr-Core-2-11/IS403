@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Skill, Applicant_Skill
+from .models import Skill, Applicant_Skill, Job, Job_Skill, Organization
 from django.db import connection
 
 # Create your views here.
@@ -7,7 +7,31 @@ def employerPageView(request):
     return render(request, 'employer/index.html')
 
 def findApplicantsPageView(request):
-    return render(request, 'employer/findapplicants.html')
+    jobs = Job.objects.filter(organization_id_id = 201)
+    context = {'Jobs' : jobs}
+    return render(request, 'employer/findapplicants.html', context)
+
+def findApplicantsResponsePageView(request):
+    if request.method == 'POST':
+    
+        job_id = request.POST.get('choices-multiple-remove-button')
+        query = MatchingAppsSQL(job_id) 
+
+
+
+
+        # because I need to pull data using a query that joins tables and runs an aggregate (to find number of matching skills per job adaptively),
+        # I cannot map to the models and use a cursor object to link directly to the database. https://docs.djangoproject.com/en/dev/topics/db/sql/ <-- executing custom SQL directly
+        cursor = connection.cursor()
+        cursor.execute(query) # executes SQL query generated from MatchingJobsSQL function
+        matching_users = cursor.fetchall()
+
+        context = {
+            'matchingUsers' : matching_users,
+        }
+        return render(request, 'employer/findapplicantsresponse.html', context)
+
+    return render(request, 'employer/findapplicantsresponse.html')
 
 def applicantListingsPageView(request):
     if request.method == 'POST':
@@ -31,6 +55,137 @@ def applicantListingsPageView(request):
         return render(request, 'employer/applicantlistings.html', context)
     return render(request, 'employer/applicantlistings.html')
 
+
+
+def reviewApplicantsPageView(request):
+    return render(request, 'employer/reviewapplicants.html')
+
+def applicantProfilePageView(request):
+    return render(request, 'employer/applicantprofile.html')
+
+def postJobPageView(request):
+    context = {"Skills": Skill.objects.all()}
+    return render(request, 'employer/postjob.html', context)
+
+def jobPostedPageView(request):
+    if request.method == 'POST':
+        new_job = Job()
+
+        new_job.job_title = request.POST.get('job_title')
+        new_job.salary = request.POST.get('salary')
+        new_job.apply_startDate = request.POST.get('appStart')
+        new_job.apply_endDate = request.POST.get('appEnd')
+        new_job.job_startDate = request.POST.get('jobStart')
+        new_job.job_location = request.POST.get('jobLoc')
+        new_job.job_description = request.POST.get('jobDesc')
+        new_job.job_requirements = request.POST.get('jobReq')
+        new_job.relocation_package = request.POST.get('relocPac')
+        new_job.job_benefits = request.POST.get('jobBen')
+        new_job.Job_filled = False
+        new_job.organization_id = Organization.objects.get(organization_id = 201)
+        new_job.save()
+
+        required_skills = request.POST.getlist('choices-multiple-remove-button-required')
+        preferred_skills = request.POST.getlist('choices-multiple-remove-button-preferred')
+
+        for skill in required_skills:
+            new_job_skill = Job_Skill()
+            new_job_skill.job_id = Job.objects.all().order_by("-job_id")[0]
+            new_job_skill.skill_name = Skill.objects.get(skill_name = skill)
+            new_job_skill.required = True
+            new_job_skill.save()
+        for skill in preferred_skills:
+            new_job_skill = Job_Skill()
+            new_job_skill.job_id = Job.objects.all().order_by("-job_id")[0]
+            new_job_skill.skill_name = Skill.objects.get(skill_name = skill)
+            new_job_skill.required = False
+            new_job_skill.save()
+        
+    return render(request, 'employer/jobposted.html')
+
+def editJobPageView(request):
+    jobs = Job.objects.filter(organization_id_id = 201)
+    context = {'Jobs' : jobs}
+    return render(request, 'employer/editjob.html', context)
+
+def editJobResponsePageView(request):
+    job_to_edit = Job.objects.get(job_id = request.POST.get('choices-multiple-remove-button'))
+    job_skills = Job_Skill.objects.filter(job_id= request.POST.get('choices-multiple-remove-button'))
+    job_skills_req = []
+    job_skills_pref = []
+    for skill in job_skills:
+        if skill.required == True:
+            job_skills_req.append(skill.skill_name)
+        else:
+            job_skills_pref.append(skill.skill_name)
+
+    context = {"jobToEdit" : job_to_edit,
+               "jobIDToEdit" : request.POST.get('choices-multiple-remove-button'),
+               "reqSkills" : job_skills_req,
+               "prefSkills" : job_skills_pref,
+               "Skills": Skill.objects.all(),}
+    return render(request, 'employer/editjobresponse.html', context)
+
+def editJobSuccessPageView(request):
+    updated_job = Job.objects.get(job_id = request.POST.get('job_id'))
+    old_skills = Job_Skill.objects.filter(job_id = request.POST.get('job_id'))
+    old_skills.delete()
+    print(f"Job ID: {request.POST.get('job_id')}")
+
+    updated_job.job_id = request.POST.get('job_id')
+    updated_job.job_title = request.POST.get('job_title')
+    updated_job.salary = request.POST.get('salary')
+    updated_job.apply_startDate = request.POST.get('appStart')
+    updated_job.apply_endDate = request.POST.get('appEnd')
+    updated_job.job_startDate = request.POST.get('jobStart')
+    updated_job.job_location = request.POST.get('jobLoc')
+    updated_job.job_description = request.POST.get('jobDesc')
+    updated_job.job_requirements = request.POST.get('jobReq')
+    updated_job.relocation_package = request.POST.get('relocPac')
+    updated_job.job_benefits = request.POST.get('jobBen')
+    
+    if request.POST.get('deactivate') == 'True':
+        updated_job.Job_filled = True
+    else:
+        updated_job.Job_filled = False
+    updated_job.save()
+
+    required_skills = request.POST.getlist('choices-multiple-remove-button-required')
+    preferred_skills = request.POST.getlist('choices-multiple-remove-button-preferred')
+
+    for skill in required_skills:
+        new_job_skill = Job_Skill()
+        new_job_skill.job_id = Job.objects.get(job_id=request.POST.get('job_id'))
+        new_job_skill.skill_name = Skill.objects.get(skill_name = skill)
+        new_job_skill.required = True
+        new_job_skill.save()
+    for skill in preferred_skills:
+        new_job_skill = Job_Skill()
+        new_job_skill.job_id = Job.objects.get(job_id=request.POST.get('job_id'))
+        new_job_skill.skill_name = Skill.objects.get(skill_name = skill)
+        new_job_skill.required = False
+        new_job_skill.save()
+
+    
+
+    return render(request, 'employer/editjobsuccess.html')
+
+
+def editEmployerProfilePageView(request):
+    return render(request, 'employer/editemployerprofile.html')
+
+def empMyAccountPageView(request):
+    return render(request, 'employer/empmyaccount.html')
+
+def MatchingAppsSQL(job_id, num_records = 10):
+    
+    query = f"""SELECT COUNT(has."skill_name_id"), has."user_id_id", ha."first_name", ha."last_name", ha."city", ha."state", ha."video_link", ha."resume_upload" FROM homepage_applicant_skill has
+                INNER JOIN homepage_applicant ha ON ha."user_id" = has."user_id_id"
+                WHERE has."skill_name_id" IN (SELECT hjs."skill_name_id" FROM homepage_job_skill hjs WHERE hjs."job_id_id" = {job_id})
+                GROUP BY has."user_id_id", ha."first_name", ha."last_name", ha."city", ha."state", ha."video_link", ha."resume_upload"
+                ORDER BY COUNT(has."skill_name_id") DESC
+                LIMIT {num_records};"""
+    return query
 
 def regresionModel(selectedSkills):
     from urllib import request
@@ -80,37 +235,6 @@ def regresionModel(selectedSkills):
     numApps = result['Results']['output1']['value']['Values'][0]
 
     return numApps
-
-
-def reviewApplicantsPageView(request):
-    return render(request, 'employer/reviewapplicants.html')
-
-def applicantProfilePageView(request):
-    return render(request, 'employer/applicantprofile.html')
-
-def postJobPageView(request):
-    return render(request, 'employer/postjob.html')
-
-def editEmployerProfilePageView(request):
-    return render(request, 'employer/editemployerprofile.html')
-
-def MatchingAppsSQL(skill_names, num_records = 10):
-    skills_sql_format = "'"
-    for skill in skill_names:
-        skills_sql_format += skill + "', '"
-    skills_sql_format = skills_sql_format[:-1]
-    skills_sql_format = skills_sql_format[:-1]
-    skills_sql_format = skills_sql_format[:-1]
-    query = f"""SELECT COUNT(has."skill_name") AS Matching_Skills, a."user_id", (a."first_name" + " " + a."lastname") AS Applicant_Name, a."city", '' AS video_button FROM homepage_applicant_skill has
-                INNER JOIN homepage_applicant a ON has."user_id" = a."user_id"
-                WHERE has."skill_name" IN ({skills_sql_format}) AND a."seeking_work" != True
-                GROUP BY has."user_id", a."first_name", a."last_name", a."city"
-                HAVING COUNT(has."skill_name") > 0
-                ORDER BY COUNT(has."skill_name") DESC
-                LIMIT {num_records}"""
-    return query
-
-
 
 
 

@@ -1,12 +1,19 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block banner %}
+<img src="{% static 'img/backgrounds/background_5.jpg' %}" width="100%" height ="100%"/>
+{% endblock %}
 {% block content %}
-<h1>Our Mission</h1>
-<p>This website connects the Black community with employers striving to increase the diversity and equality within their companies. Our website provide more opportunities for both employers and applicants in the following ways:
-<ul>
-<li>This tool focuses on the applicants' skill set to enable both employers and applicants to find the best fit</li>
-<li>Employers and applicants upload video profiles to improve their connection and makes the process feel more natural</li>
-<li>Recommender features leverage machine learning so that applicant and employers can sort through thousands of options quickly and find the perfect match</li> 
-</ul>
-</p>
+<div  style="margin:auto;text-align:center;">
+<br>
+    <h1>Our Mission</h1>
+<br>
+    <p style="text-align:center; font-size: x-large;">This website connects the Black community with employers striving to increase the diversity and equality within their companies. Our website provide more opportunities for both employers and applicants in the following ways:</p>
+    <ul style="text-align:left;">
+        <li style="text-align:left; font-size: large;">This tool focuses on the applicants' skill set to enable both employers and applicants to find the best fit</li>
+        <li style="text-align:left; font-size: large;">Employers and applicants upload video profiles to improve their connection and makes the process feel more natural</li>
+        <li style="text-align:left; font-size: large;">Recommender features leverage machine learning so that applicant and employers can sort through thousands of options quickly and find the perfect match</li> 
+    </ul>
+<br>
+</div>
 {% endblock %}

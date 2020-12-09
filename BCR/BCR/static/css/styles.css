@@ -1,9 +1,13 @@
 
+.banner {
+    height: 200px;
+}
+
 .homepage-banner {
     margin:auto;
     width:100%;
     height:auto;
-	background: #edf0f4;
+	  background: #edf0f4;
     border-radius: 3px 3px 3px 3px;
     text-align:center;
 }
@@ -13,7 +17,7 @@
 }
 
 .homepage-banner-inner-subtext {
-    width: 37%;
+    width: 50%;
     margin:auto;
 }
 
@@ -23,6 +27,7 @@
 .content-div {
     padding-left:50px;
     padding-right:50px;
+    padding-bottom: 10px;
     width:60%;
     margin:auto;
     height:auto;
@@ -43,6 +48,31 @@
   border-style:solid;
   border-radius: 3px 3px 3px 3px;
   border-width: 2px;
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: white;
+  background-color:red;
+  transition-duration: 0.4s;
+
+}
+
+.btn-secondary {
+  color:black;
+  background-color:rgba(209, 209, 209, 0.637);
+  border:none;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color:red;;
+  border-color: red;
+}
+
+
+.active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: white;
+  background-color:red;
 }
 
 body {
@@ -98,13 +128,16 @@ label{
 
 .submit-button {
     margin:auto;
-    background-color:white;
+    background-color:rgba(209, 209, 209, 0.637);
     color:black;
-    border-style:solid;
-    border-color:red;
+    border-style:none;
     border-width:2px;
     border-radius: 4px;
     transition-duration: 0.4s;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 5px;
+    padding-top: 3px;
 }
 
 .submit-button:hover {
@@ -181,6 +214,11 @@ label{
 .column {
   float: center;
   width: 50%;
+}
+
+.column_3 {
+  float: center;
+  width: 33%;
 }
 
 /* Clear floats after the columns */

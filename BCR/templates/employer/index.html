@@ -1,28 +1,31 @@
 {% extends 'employerbase.html' %}
 {% load static %}
 {%block banner%}
+<img src="{% static 'img/backgrounds/background_3.jpg' %}" width="100%" height ="100%"/>
 {% endblock %}
 {% block content %}
-    <h1>Employer Portal</h1>
-  <hr>
-  <form>
-        <h5>Open for applicantions?</h5>
-        <a class="btn btn-secondary" href="{% url 'postjob' %}">Post A Job</a>
-        <br>
-        <h5>Looking for qualified applicants?</h5>
-        <a class="btn btn-secondary" href="{% url 'findapplicants' %}">Find An Applicant</a>
-        <br>
-        <h5>Review and respond to job applications</h5>
-        <a class="btn btn-secondary" href="{% url 'reviewapplicants' %}">Job Applications</a>
-        <br>
-        <h5>Have not gotton an account? Sign up now!</h5>
-        <a class="btn btn-secondary" href="{% url 'signupemployer' %}">Create An Account</a> 
-        <br>
-        <h5>Already have an account? Login in now!</h5>
-        <a class="btn btn-secondary" href="{% url 'login' %}">Login</a>
-        <br>
-        <h5>Edit or delete your profile</h5>
-        <a class="btn btn-secondary" href="{% url 'editemployerprofile' %}">Company Profile</a>
-    </form>
-    <br><br>
+<br>
+    <h1 style="text-align:center;">Employer Portal</h1>
+<hr>
+<div class="row" style="text-align:center;margin:auto;">
+    <div class="column_3" style="text-align:center;margin:auto;">
+        <form>
+            <a class="btn btn-secondary" style="width: 90%; display: block; margin:0 auto;" href="{% url 'postjob' %}">Post a New Job</a>
+        </form>
+    </div>
+
+    <div class="column_3" style="text-align:center; margin:auto;">
+        <form style="text-align:center;">
+            <a class="btn btn-secondary" style="width: 90%; display: block; margin:0 auto;" href="{% url 'reviewapplicants' %}">Review Job Applications</a>
+        </form>
+    </div>
+
+    <div class="column_3" style="text-align:center; margin:auto;">
+        <form style="text-align:center;">
+            <a class="btn btn-secondary" style="width: 90%; display: block; margin:0 auto;" href="{% url 'findapplicants' %}">Find Candidates</a>
+        </form>
+    </div>
+
+</div>
+<br/>
 {% endblock %}

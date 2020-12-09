@@ -9,5 +9,5 @@ urlpatterns = [
     path("companyprofile/", companyProfilePageView, name="companyprofile"),
     path("skillrecommender/", skillRecommenderPageView, name="skillrecommender"),
     path("skillrecommender/response/", skillRecommenderResponsePageView, name="skillrecommenderresponse"),
-    path("offers", offersPageView, name="offers")
+    path("offers/", offersPageView, name="offers")
 ]

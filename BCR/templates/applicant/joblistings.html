@@ -1,8 +1,13 @@
 {% extends 'tablebase.html' %}
 {% load static %}
+{% block banner %}
+<img src="{% static 'img/backgrounds/background_2.jpg' %}" width="100%" height ="100%"/>
+{% endblock %}
 {% block content %}
     <h2 style="text-align:center;">Your Personalized Job Results</h2>
-    <p style="text-align:center;">Congratulations! On average, active BCR users with your similar skill set receive {{numJobs}} job offer{% if numJobs > 1 %}s{% endif %}.</p>
+    <br>
+    <h4 style="text-align:center; color: red;">Congratulations! Active BCR users with similar skill sets to you have received {{numJobs }} job offer{% if numJobs > 1 or numJobs == 0 %}s{% endif %}.</h4>
+    <br>
     <table class="table-centered">
         <tr>
             <th># of Matching Skills</th>
@@ -18,11 +23,12 @@
             <td>{{job.2}}</td>
             <td>{{job.3}}</td>
             <td>{{job.4}}</td>
-            <td><a class="btn btn-light" href="#">Video</a></td>
-            <td><a class="btn btn-light" href="#">View Listing</a></td>
+            <td><a class="btn btn-secondary" href="#">Video</a></td>
+            <td><a class="btn btn-secondary" href="{% url 'jobdetails' %}">View Listing</a></td>
         </tr>
         {% endfor %}
     </table>
+    <br>
 {% endblock %}
 
 

@@ -1,17 +1,17 @@
 {% extends 'employerbase.html' %}
 {% load static %}
 {%block banner%}
-<img src="{% static 'img/backgrounds/background_5.jpg' %}" width="100%" height ="100%"/>
+<img src="{% static 'img/backgrounds/background_8.jpg' %}" width="100%" height ="100%"/>
 {% endblock %}
 {% block content %}
 
-<h2 style="text-align:center;">Find Candidates</h2>
-<p style="text-align:center;">Select a job you've posted, and we'll suggest candidates that match your skill requirements.</p>
-<form action="{% url 'findapplicantsresponse' %}" method="post">
+<h2 style="text-align:center;">Edit Job</h2>
+<p style="text-align:center;">Select a job listing to edit.</p>
+<form action="{% url 'editjobresponse' %}" method="post">
     {% csrf_token %}
     <div class="row d-flex justify-content-center mt-100">
         <div class="col-md-6"> 
-            <select id="choices-multiple-remove-button" name="choices-multiple-remove-button" placeholder="Select your top skill">
+            <select id="choices-multiple-remove-button" name="choices-multiple-remove-button" placeholder="Select a job to edit">
                 <option disabled selected value> Select a job...</option>
                 {% for job in Jobs %}
                 <option value="{{ job.job_id }}">{{ job.job_title }} - {{job.job_location}}</option>
@@ -33,7 +33,3 @@
 });
 </script>
 {% endblock %}
-
-
-
-

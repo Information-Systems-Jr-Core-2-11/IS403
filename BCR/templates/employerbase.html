@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <title>Black Cyber Recruiting - Employer Portal</title>
+    <link rel="stylesheet" href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006288/BBBootstrap/choices.min.css?version=7.0.0">
+    <script src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1569006273/BBBootstrap/choices.min.js?version=7.0.0"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="shortcut icon" type="image/png" href="{% static 'bcr.png' %}"/>
@@ -17,13 +22,15 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
-            <a class="nav-item nav-link" href="{% url 'postjob' %}">Post a Job <span class="sr-only">(current)</span></a>
-            <a class="nav-item nav-link" href="{% url 'findapplicants' %}">Find Applicants</a>
-            <a class="nav-item nav-link" href="{% url 'ourmission' %}">Review Applicants</a>
+            <a class="nav-item nav-link red-hover {% if request.path == '/employer/postjob/' %}active{% endif %}" href="{% url 'postjob' %}">Post a Job <span class="sr-only">(current)</span></a>
+            <a class="nav-item nav-link red-hover {% if request.path == '/employer/editjob/' or request.path == '/employer/editjob/form' or request.path == '/employer/editjob/success' %}active{% endif %}" href="{% url 'editjob' %}">Edit a Job </a>
+            <a class="nav-item nav-link red-hover {% if request.path == '/employer/findapplicants/' or request.path == '/employer/findapplicants/response/' or request.path == '/employer/applicantprofile/'%}active{% endif %}" href="{% url 'findapplicants' %}">Find Candidates</a>
+            <a class="nav-item nav-link red-hover {% if request.path == '/employer/reviewapplicants/' %}active{% endif %}" href="{% url 'reviewapplicants' %}">Review Applicants</a>
+            <a class="nav-item nav-link red-hover {% if request.path == '/employer/' %}active{% endif %}" href="{% url 'employer' %}">Employer Portal</a>
 
           </div>
           <div class="navbar-nav ml-auto">
-              <a class="nav-item nav-link" href="{% url 'signupmain' %}">My Account</a>
+              <a class="nav-item nav-link {% if request.path == '/employer/myaccount/' %}active{% endif %}" href="{% url 'empmyaccount' %}">My Account</a>
           </div>
         </div>
     </nav>
