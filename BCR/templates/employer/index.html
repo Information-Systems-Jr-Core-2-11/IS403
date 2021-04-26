@@ -1,5 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'employerbase.html' %}
 {% load static %}
+{%block banner%}
+<img src="{% static 'img/backgrounds/background_3.jpg' %}" width="100%" height ="100%"/>
+{% endblock %}
 {% block content %}
-    <p>employer index</p>
+<br>
+    <h1 style="text-align:center;">Employer Portal</h1>
+<hr>
+<div class="row" style="text-align:center;margin:auto;">
+    <div class="column_3" style="text-align:center;margin:auto;">
+        <form>
+            <a class="btn btn-secondary" style="width: 90%; display: block; margin:0 auto;" href="{% url 'postjob' %}">Post a New Job</a>
+        </form>
+    </div>
+
+    <div class="column_3" style="text-align:center; margin:auto;">
+        <form style="text-align:center;">
+            <a class="btn btn-secondary" style="width: 90%; display: block; margin:0 auto;" href="{% url 'reviewapplicants' %}">Review Job Applications</a>
+        </form>
+    </div>
+
+    <div class="column_3" style="text-align:center; margin:auto;">
+        <form style="text-align:center;">
+            <a class="btn btn-secondary" style="width: 90%; display: block; margin:0 auto;" href="{% url 'findapplicants' %}">Find Candidates</a>
+        </form>
+    </div>
+
+</div>
+<br/>
 {% endblock %}

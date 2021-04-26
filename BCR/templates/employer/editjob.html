@@ -1,0 +1,35 @@
+{% extends 'employerbase.html' %}
+{% load static %}
+{%block banner%}
+<img src="{% static 'img/backgrounds/background_8.jpg' %}" width="100%" height ="100%"/>
+{% endblock %}
+{% block content %}
+
+<h2 style="text-align:center;">Edit Job</h2>
+<p style="text-align:center;">Select a job listing to edit.</p>
+<form action="{% url 'editjobresponse' %}" method="post">
+    {% csrf_token %}
+    <div class="row d-flex justify-content-center mt-100">
+        <div class="col-md-6"> 
+            <select id="choices-multiple-remove-button" name="choices-multiple-remove-button" placeholder="Select a job to edit">
+                <option disabled selected value> Select a job...</option>
+                {% for job in Jobs %}
+                <option value="{{ job.job_id }}">{{ job.job_title }} - {{job.job_location}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <input type="submit" name="submit" id="submit" class="submit-button">
+</form>
+<script>
+     $(document).ready(function(){
+
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+    removeItemButton: true,
+    maxItemCount:100,
+    searchResultLimit:20,
+    renderChoiceLimit:20,
+    });
+});
+</script>
+{% endblock %}

@@ -1,5 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block banner %}
+<img src="{% static 'img/backgrounds/background_2.jpg' %}" width="100%" height ="100%"/>
+{% endblock %}
 {% block content %}
-    <p>findajob- enter your 3 skills to find jobs that fit your expertise</p>
+
+<h1 style="text-align:center;">Find a job</h1>
+<p style="text-align:center;width:85%;margin:auto;">Enter your top skills/proficiencies below, and we'll match you with jobs that you're 
+    the best fit for. We'll also let you know how many job offers users with similar skillsets tend to receive.</p>
+<form action="{% url 'joblistings' %}" method="post">
+    {% csrf_token %}
+    <div class="row d-flex justify-content-center mt-100">
+        <div class="col-md-6"> 
+            <select id="choices-multiple-remove-button" name="choices-multiple-remove-button" placeholder="Select all applicable skills" multiple>
+                {% for skill in Skills %}
+                <option value="{{skill.skill_name}}">{{skill.skill_name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <input type="submit" class="submit-button" value="Submit" style="margin:auto;">
+</form>
+<script>
+     $(document).ready(function(){
+
+    var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+    removeItemButton: true,
+    maxItemCount:100,
+    searchResultLimit:20,
+    renderChoiceLimit:20,
+    });
+});
+</script>
+
 {% endblock %}

@@ -5,14 +5,57 @@
         <div class="homepage-banner-inner">
             <h1>Welcome to the Black Cyber Recruiter network</h1>
             <div class="homepage-banner-inner-subtext">
-                <p>We help connect job-seeking Blacks to employers, using a candidate's skills to help both the candidate
+                <p>We help connect job-seeking people of color to employers, using a candidate's skills to help both the candidate
                     and the employer find the perfect match.
                 </p>
             </div>
         </div>
     </div>
-
+{% endblock %}
+{% block banner_1 %}
+<img src="{% static 'img/backgrounds/background_7.jpg' %}" width="100%" height ="100%"/>
 {% endblock %}
 {% block content %}
-<p>Here is some content for our home index page!</p>
+        <div style="text-align:center;margin:auto;">
+        <br>
+            <h2 style="text-align:center;">Your skills tell your story</h2>
+            <hr>
+            <h6 style="text-align:center;">Get personalized job recommendations based on your capabilities, and nothing else. </h6>
+            <p></p>
+            <a class="btn btn-secondary" href="{% url 'findajob' %}">Find a job</a>
+            <br>
+            <br>
+            
+    
+        <br>
+        <div >
+            <h2 style="text-align:center;">Developed with the help of Machine Learning</h2>
+            <hr>
+            <h6 style="text-align:center;">Learn which skills you can pick up to most help you land the next big job.</h6>
+            <p></p>
+            <a class="btn btn-secondary" href="{% url 'skillrecommender' %}">Skill Recommender</a>
+            <br>
+            <br>
+        </div>
+        </div>
+
+{% endblock %}
+
+{% block belowcontent %}
+<div class="content-holder">
+    <div class="content-div" style="background-color: #edf0f4;">
+            <div style="text-align:center;margin:auto;">
+            <br>
+            <h2 style="text-align:center;">Looking to hire?</h2>
+            <hr>
+            <h6 style="text-align:center;">We'll match you with candidates based on your preferences. Leave the heavy-lifting to us. </h6>
+            <p></p>
+            <a class="btn btn-secondary" href="{% url 'employer' %}">Employer Portal</a>
+            <br>
+            <br>
+
+        </div>
+    </div>
+</div>
+
 {% endblock %}

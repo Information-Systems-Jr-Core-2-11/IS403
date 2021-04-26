@@ -1,5 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block banner %}
+<img src="{% static 'img/backgrounds/background_1.jpg' %}" width="100%" height ="100%"/>
+    {% comment %} <div class="homepage-banner">
+        <div class="homepage-banner-inner">
+            <h1>Skill Recommender</h1>
+            <div class="homepage-banner-inner-subtext">
+                <p>Enter your strongest or most prominent skill below. We'll use information about real people who have received real job offers to recommend which additional skills will most help you land your next job.
+                </p>
+            </div>
+        </div>
+    </div> {% endcomment %}
+    {% endblock %}
 {% block content %}
-    <p>skill recommender</p>
+    <h1 style="text-align:center;">Skill Recommender</h1>
+        <p style="text-align:center;padding-top:15px;">Enter your strongest or most prominent skill below. <br><br>We'll use information about real people who have received real job offers to recommend which additional skills will most help you land your next job.</p>
+        <form action="{% url 'skillrecommenderresponse' %}" method="post">
+            {% csrf_token %}
+            <div class="row d-flex justify-content-center mt-100">
+                <div class="col-md-6"> 
+                    <select id="choices-multiple-remove-button" name="choices-multiple-remove-button" placeholder="Select your top skill">
+                        <option disabled selected value> Select your top skill</option>
+                        {% for skill in Skills %}
+                        <option value="{{skill.skill_name}}">{{skill.skill_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <input type="submit" class="submit-button" value="Submit" >
+        </form>
+
+    <script>
+        $(document).ready(function(){
+   
+       var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+       removeItemButton: true,
+       maxItemCount:100,
+       searchResultLimit:20,
+       renderChoiceLimit:20,
+       });
+   });
+   </script>
 {% endblock %}
