@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="lightboxdiv">
+    <p>This page will contain a django form which will ask the user to login.</p>
+    <p>It will also have a button that links to the signup page if the user is not signed up to use the site.</p>
+    <button><a href="{% url 'signup' %}">Signup</a></button>
+    </div>
+
+{% endblock %}

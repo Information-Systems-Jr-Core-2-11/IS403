@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon!</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div class="header">
+        <img class="banner" src="{% static 'img/pokemon.png' %}" alt="pokemon_header">
+    </div>
+    <ul>
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'pokedex' %}">Pokedex</a></li>
+        <li><a href="{% url 'viewTrainer' %}">Trainer</a></li>
+        <li style="float:right"><a href="{% url 'login' %}">Login</a></li>
+    </ul>
+</body>
+</html>
+{% block content %}
+{% endblock %}

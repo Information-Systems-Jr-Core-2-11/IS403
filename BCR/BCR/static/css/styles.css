@@ -1,0 +1,37 @@
+.homepage-banner {
+    margin:auto;
+    width:100%;
+    height:auto;
+	background: #edf0f4;
+    border-radius: 3px 3px 3px 3px;
+    text-align:center;
+}
+
+.homepage-banner-inner {
+    padding: 20px 0;
+}
+
+.homepage-banner-inner-subtext {
+    width: 37%;
+    margin:auto;
+}
+
+.content-holder {
+    padding: 15px 0;
+}
+.content-div {
+    padding-left:50px;
+    padding-right:50px;
+    width:60%;
+    margin:auto;
+    height:auto;
+    border-color:rgba(131, 129, 129, 0.185);
+    border-style:solid;
+    border-radius: 3px 3px 3px 3px;
+    border-width: 2px;
+
+}
+
+.content-header {
+    text-align:center;
+}

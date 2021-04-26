@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="lightboxdiv">
+    <table style="width:100%">
+        <tr>
+            <th>Trainer ID</th>
+            <th>Name</th>
+            <th>Home Town</th>
+            <th>Gender</th>
+            <th>Favorite Type</th>
+        </tr>
+        {% for trainer in Trainers %}
+        <tr>
+            <td>{{trainer.id}}</td>
+            <td>{{trainer.full_name}}</td>
+            <td>{{trainer.home_town}}</td>
+            <td>{{trainer.gender}}</td>
+            <td>{{trainer.fav_type}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <button><a href="{% url 'createTrainer' %}">Create a Trainer</a></button>
+    <button><a href="{% url 'updateTrainer' %}">Update a Trainer's Information</a></button>
+    <button><a href="{% url 'deleteTrainer' %}">Delete a Trainer</a></button>
+    <br><br>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="lightboxdiv">
+    {% for trainer in update_trainer %}
+    <form action="{% url 'updateRecord' %}" method="post">
+        {% csrf_token %}
+        <b>Update Trainer {{trainer.full_name}}</b> <br>
+        <label for="trainer_id">ID of Trainer to be updated:</label>
+        <input id="trainer_id" type="text" name="trainer_id" value="{{trainer.id}}" readonly size="2"><br>
+        <label for="trainer_first_name">What is the updated trainer's first name:</label>
+        <input id="trainer_first_name" type="text" name="trainer_first_name" value="{{trainer.first_name}}"><br>
+        <label for="trainer_last_name">What is the updated trainer's last name:</label>
+        <input id="trainer_last_name" type="text" name="trainer_last_name" value="{{trainer.last_name}}"> <br>
+        <label for="hometown">What is the updated trainer's home town:</label>
+        <select name="hometown">
+            <option value="Pallet Town" {% if trainer.home_town == 'Pallet Town' %} selected="selected" {% endif %}>Pallet Town</option>
+            <option value="Viridian City" {% if trainer.home_town == 'Viridan City' %} selected="selected" {% endif %}>Viridian City</option>
+            <option value="Pewter City" {% if trainer.home_town == 'Pewter City' %} selected="selected" {% endif %}>Pewter City</option>
+            <option value="Cerulean City"{% if trainer.home_town == 'Cerulean City' %} selected="selected" {% endif %}>Cerulean City</option>
+            <option value="Vermillion City" {% if trainer.home_town == 'Vermillion City' %} selected="selected" {% endif %}>Vermillion City</option>
+            <option value="Lavender Town" {% if trainer.home_town == 'Lavender Town' %} selected="selected" {% endif %}>Lavender Town</option>
+            <option value="Celadon City" {% if trainer.home_town == 'Celadon City' %} selected="selected" {% endif %}>Celadon City</option>
+            <option value="Fuchsia City" {% if trainer.home_town == 'Fuchsia City' %} selected="selected" {% endif %}>Fuchsia City</option>
+            <option value="Saffron City" {% if trainer.home_town == 'Saffron City' %} selected="selected" {% endif %}>Saffron City</option>
+            <option value="Cinnabar Island" {% if trainer.home_town == 'Cinnabar Island' %} selected="selected" {% endif %}>Cinnabar Island</option>
+        </select> <br>
+        <label for="gender">What is the updated trainer's gender:</label>
+        <select name="gender">
+            {% if trainer.gender == 'M' %}
+            <option value="M" selected="selected">Male</option>
+            {% else %}
+            <option value="M">Male</option>
+            {% endif %}
+            {% if trainer.gender == 'F' %}
+            <option value="F" selected="selected">Female</option>
+            {% else %}
+            <option value="F">Female</option>
+            {% endif %}
+            {% if trainer.gender == 'O' %}
+            <option value="O" selected="selected">Other</option>
+            {% else %}
+            <option value="O">Other</option>
+            {% endif %}
+
+        </select> <br>
+        <label for="favtype">What is the updated trainer's favorite type:</label>
+        <select name="favtype">
+            <option value="Normal" {% if trainer.fav_type == 'Normal' %} selected="selected" {% endif %}>Normal</option>
+            <option value="Fire" {% if trainer.fav_type == 'Fire' %} selected="selected" {% endif %}>Fire</option>
+            <option value="Fighting" {% if trainer.fav_type == 'Fighting' %} selected="selected" {% endif %}>Fighting</option>
+            <option value="Water" {% if trainer.fav_type == 'Water' %} selected="selected" {% endif %}>Water</option>
+            <option value="Flying" {% if trainer.fav_type == 'Flying' %} selected="selected" {% endif %}>Flying</option>
+            <option value="Grass" {% if trainer.fav_type == 'Grass' %} selected="selected" {% endif %}>Grass</option>
+            <option value="Poison" {% if trainer.fav_type == 'Poison' %} selected="selected" {% endif %}>Poison</option>
+            <option value="Electric" {% if trainer.fav_type == 'Electric' %} selected="selected" {% endif %}>Electric</option>
+            <option value="Ground" {% if trainer.fav_type == 'Ground' %} selected="selected" {% endif %}>Ground</option>
+            <option value="Psychic" {% if trainer.fav_type == 'Psychic' %} selected="selected" {% endif %}>Psychic</option>
+            <option value="Rock" {% if trainer.fav_type == 'Rock' %} selected="selected" {% endif %}>Rock</option>
+            <option value="Ice" {% if trainer.fav_type == 'Ice' %} selected="selected" {% endif %}>Ice</option>
+            <option value="Bug" {% if trainer.fav_type == 'Bug' %} selected="selected" {% endif %}>Bug</option>
+            <option value="Dragon" {% if trainer.fav_type == 'Dragon' %} selected="selected" {% endif %}>Dragon</option>
+            <option value="Ghost" {% if trainer.fav_type == 'Ghost' %} selected="selected" {% endif %}>Ghost</option>
+            <option value="Dark" {% if trainer.fav_type == 'Dark' %} selected="selected" {% endif %}>Dark</option>
+            <option value="Steel" {% if trainer.fav_type == 'Steel' %} selected="selected" {% endif %}>Steel</option>
+        </select> <br>
+        <input type="submit" value="Submit"> <br>
+    </form>  
+    {% endfor %}
+    <button><a href="{% url 'viewTrainer' %}">Back</a></button>
+</div>
+
+{% endblock %}

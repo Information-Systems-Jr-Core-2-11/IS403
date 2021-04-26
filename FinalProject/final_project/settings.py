@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'first_app.apps.FirstAppConfig',
     'login.apps.LoginConfig',
     'signup.apps.SignupConfig',
-    'ViewPokedex.apps.ViewpokedexConfig'
+    'ViewPokedex.apps.ViewpokedexConfig',
+    'crudTrainer.apps.crudTrainerConfig',
+    'viewYourTrainers.apps.ViewyourtrainersConfig',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +82,11 @@ WSGI_APPLICATION = 'final_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pokemonsite',
+        'USER': 'postgres',
+        'PASSWORD': 'password',
+        'HOST': 'localhost'
     }
 }
 
@@ -122,4 +127,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'final_project/static'),
+]

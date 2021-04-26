@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    
+    <div class="lightboxdiv">
+        <table style="width:100%">
+            <tr>
+                <th>Trainer ID</th>
+                <th>Name</th>
+                <th>Home Town</th>
+                <th>Gender</th>
+                <th>Favorite Type</th>
+            </tr>
+            {% for trainer in Trainers %}
+            <tr>
+                <td>{{trainer.id}}</td>
+                <td>{{trainer.full_name}}</td>
+                <td>{{trainer.home_town}}</td>
+                <td>{{trainer.gender}}</td>
+                <td>{{trainer.fav_type}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form action="{% url 'deleteTrainer' %}" method="post">
+            {% csrf_token %}
+            <b>Delete a Trainer</b> <br>
+            <label for="customer_name">Enter the Trainer ID of the Trainer to delete:</label>
+            <input id="trainer_id_delete" type="text" name="trainer_id_delete"> <br>
+            <input type="submit" value="Submit"> <br>
+        </form>
+        <button><a href="{% url 'viewTrainer' %}">Back</a></button>
+    </div>
+
+{% endblock %}
